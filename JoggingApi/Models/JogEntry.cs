@@ -7,5 +7,10 @@ namespace JoggingApi.Models
 {
     public class JogEntry
     {
+        public long Id { get; set; }
+        public DateTime Date { get; set; }
+        public float Distance { get; set; }
+        public string Time { get; set; }
+        public string Location { get; set; }
     }
 }
