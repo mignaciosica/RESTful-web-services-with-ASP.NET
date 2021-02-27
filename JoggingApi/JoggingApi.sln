@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoggingApi", "JoggingApi.csproj", "{B6558E92-1918-4C74-BE57-088161F8C3AE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B6558E92-1918-4C74-BE57-088161F8C3AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6558E92-1918-4C74-BE57-088161F8C3AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6558E92-1918-4C74-BE57-088161F8C3AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6558E92-1918-4C74-BE57-088161F8C3AE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3793869F-1244-4D63-B21A-26C5D5E33020}
+	EndGlobalSection
+EndGlobal
