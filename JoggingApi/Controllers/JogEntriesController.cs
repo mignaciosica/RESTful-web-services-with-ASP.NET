@@ -78,7 +78,7 @@ namespace JoggingApi.Controllers
         public async Task<ActionResult<JogEntry>> PostJogEntry(JogEntry jogEntry)
         {
             _context.JogEntries.Add(jogEntry);
-            jogEntry.Date = DateTime.Now;
+            jogEntry.Date = DateTime.Now.Date;
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetJogEntry", new { id = jogEntry.Id }, jogEntry);
