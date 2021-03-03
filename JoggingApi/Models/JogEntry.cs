@@ -8,9 +8,10 @@ namespace JoggingApi.Models
     public class JogEntry
     {
         public long Id { get; set; }
-        public string Date { get; set; }
+        private DateTime _date;
+        public DateTime Date { get => _date; set => _date = DateTime.Now; }
         public float Distance { get; set; }
-        public string Time { get; set; }
+        public float Time { get; set; }
         public string Location { get; set; }
     }
 }
