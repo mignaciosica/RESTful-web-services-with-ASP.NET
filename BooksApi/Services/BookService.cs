@@ -4,8 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using BooksApi.Models;
 using MongoDB.Driver;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace BooksApi.Services
 {
