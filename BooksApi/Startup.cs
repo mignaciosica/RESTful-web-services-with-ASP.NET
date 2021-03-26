@@ -48,6 +48,7 @@ namespace BooksApi
                 sp.GetRequiredService<IOptions<BookstoreDatabaseSettings>>().Value);
 
             services.AddSingleton<BookService>();
+            services.AddSingleton<UserService>();
 
             services.AddControllers()
                 .AddNewtonsoftJson(options => options.UseMemberCasing());

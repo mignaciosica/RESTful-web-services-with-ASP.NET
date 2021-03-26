@@ -1,8 +1,8 @@
 ﻿using BooksApi.Models;
 using BooksApi.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Authorization;
 
 namespace BooksApi.Controllers
 {
