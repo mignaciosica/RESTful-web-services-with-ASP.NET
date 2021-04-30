@@ -1,7 +1,12 @@
-﻿using BooksApi.Models;
+﻿using System;
+using BooksApi.Models;
 using BooksApi.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Net.Http.Headers;
 
 namespace BooksApi.Controllers
 {
@@ -20,17 +25,24 @@ namespace BooksApi.Controllers
         public ActionResult<List<User>> Get() =>
             _userService.Get();
 
+        [Authorize]
         [HttpGet("{id:length(24)}", Name = "GetUser")]
         public ActionResult<User> Get(string id)
         {
-            var book = _userService.Get(id);
+            var authHeaders = Request.Headers[HeaderNames.Authorization];
+            var handler = new JwtSecurityTokenHandler();
+            var token = handler.ReadJwtToken(authHeaders.ToString().Remove(0, 7));
+            
+            Console.WriteLine(token);
+            
+            var user = _userService.Get(id);
 
-            if (book == null)
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return book;
+            return user;
         }
 
         [HttpPost]
