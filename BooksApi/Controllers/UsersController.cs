@@ -7,6 +7,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Net.Http.Headers;
+using MongoDB.Bson;
 
 namespace BooksApi.Controllers
 {
@@ -29,20 +30,24 @@ namespace BooksApi.Controllers
         [HttpGet("{id:length(24)}", Name = "GetUser")]
         public ActionResult<User> Get(string id)
         {
-            var authHeaders = Request.Headers[HeaderNames.Authorization];
+            var authHeader = Request.Headers[HeaderNames.Authorization];
             var handler = new JwtSecurityTokenHandler();
-            var token = handler.ReadJwtToken(authHeaders.ToString().Remove(0, 7));
-            
-            Console.WriteLine(token);
-            
+            var token = handler.ReadJwtToken(authHeader.ToString().Remove(0, 7));
+            var sub = token.Payload.Sub.Remove(0,6);
+
+            Console.WriteLine(sub);
+
             var user = _userService.Get(id);
 
-            if (user == null)
-            {
+            if (user == null) {
                 return NotFound();
             }
 
-            return user;
+            if (user.Auth0Id == sub) {
+                return user;
+            }
+
+            return Unauthorized();
         }
 
         [HttpPost]

@@ -14,6 +14,10 @@ namespace BooksApi.Models
         [JsonProperty("Name")]
         public string Username { get; set; }
 
+        [BsonElement("auth0_id")]
+        [JsonProperty("auth0_id")]
+        public string Auth0Id { get; set; }
+
         public string Password { get; set; }
     }
 }
