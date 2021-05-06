@@ -64,6 +64,7 @@ namespace BooksApi
 
             services.AddSingleton<BookService>();
             services.AddSingleton<UserService>();
+            services.AddSingleton<AssetService>();
             
             services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
 

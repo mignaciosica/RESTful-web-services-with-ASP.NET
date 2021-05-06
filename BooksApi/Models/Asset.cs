@@ -27,11 +27,11 @@ namespace BooksApi.Models
         
         [BsonElement("asset_number")]
         [JsonProperty("asset_number")]
-        public int AssetNumber { get; set; }
+        public string AssetNumber { get; set; }
         
         [BsonElement("asset_sub_number")]
         [JsonProperty("asset_sub_number")]
-        public int AssetSubNumber { get; set; }
+        public string AssetSubNumber { get; set; }
         
         [BsonElement("book")]
         [JsonProperty("book")]
@@ -81,7 +81,7 @@ namespace BooksApi.Models
         [JsonProperty("ms_code")]
         public string MSCode { get; set; }
         
-        [BsonElement(" conc")]
+        [BsonElement("conc")]
         [JsonProperty("conc")]
         public string Conc { get; set; }
         
@@ -111,3 +111,29 @@ namespace BooksApi.Models
 
     }
 }
+/*{
+    "validation_code":"",
+    "denomination":"",
+    "suggested_denomination":"",
+    "asset_number":"",
+    "asset_sub_number":"",
+    "book":"",
+    "capitalization_date":"",
+    "class":"",
+    "initial_capital":"",
+    "vcaa":"",
+    "vcan":"",
+    "total":"",
+    "area":"",
+    "line":"",
+    "system":"",
+    "component":"",
+    "ms_code":"",
+    "conc":"",
+    "snc":"",
+    "status":"",
+    "tour_date":"",
+    "ms_agent":"",
+    "ipu_agent":"",
+    "comments":"" 
+}*/

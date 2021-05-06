@@ -13,7 +13,7 @@ namespace BooksApi.Services
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
-            _assets = database.GetCollection<Asset>(settings.BooksCollectionName);
+            _assets = database.GetCollection<Asset>(settings.AssetsCollectionName);
         }
 
         public List<Asset> Get() =>
