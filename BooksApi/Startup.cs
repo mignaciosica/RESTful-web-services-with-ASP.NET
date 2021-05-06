@@ -17,6 +17,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.EntityFrameworkCore;
+using BooksApi.Data;
 
 namespace BooksApi
 {
@@ -67,6 +69,9 @@ namespace BooksApi
 
             services.AddControllers()
                 .AddNewtonsoftJson(options => options.UseMemberCasing());
+
+            services.AddDbContext<BooksApiContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("BooksApiContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -39,7 +39,7 @@ namespace BooksApi.Models
 
         [BsonElement("capitalization_date")]
         [JsonProperty("capitalization_date")]
-        public BsonDateTime CapitalizationDate { get; set; }
+        public string CapitalizationDate { get; set; }
         
         [BsonElement("class")]
         [JsonProperty("class")]
@@ -95,7 +95,7 @@ namespace BooksApi.Models
         
         [BsonElement("tour_date")]
         [JsonProperty("tour_date")]
-        public BsonDateTime TourDate { get; set; }
+        public string TourDate { get; set; }
         
         [BsonElement("ms_agent")]
         [JsonProperty("ms_agent")]

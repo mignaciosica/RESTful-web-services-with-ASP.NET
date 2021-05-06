@@ -1,36 +1,40 @@
-﻿namespace BooksApi.Services
+﻿using System.Collections.Generic;
+using BooksApi.Models;
+using MongoDB.Driver;
+
+namespace BooksApi.Services
 {
     public class AssetService
     {
-        private readonly IMongoCollection<Book> _books;
+        private readonly IMongoCollection<Asset> _assets;
 
-        public BookService(IBookstoreDatabaseSettings settings)
+        public AssetService(IBookstoreDatabaseSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
-            _books = database.GetCollection<Book>(settings.BooksCollectionName);
+            _assets = database.GetCollection<Asset>(settings.BooksCollectionName);
         }
 
-        public List<Book> Get() =>
-            _books.Find(book => true).ToList();
+        public List<Asset> Get() =>
+            _assets.Find(asset => true).ToList();
 
-        public Book Get(string id) =>
-            _books.Find<Book>(book => book.Id == id).FirstOrDefault();
+        public Asset Get(string id) =>
+            _assets.Find<Asset>(asset => asset.Id == id).FirstOrDefault();
 
-        public Book Create(Book book)
+        public Asset Create(Asset asset)
         {
-            _books.InsertOne(book);
-            return book;
+            _assets.InsertOne(asset);
+            return asset;
         }
 
-        public void Update(string id, Book bookIn) =>
-            _books.ReplaceOne(book => book.Id == id, bookIn);
+        public void Update(string id, Asset assetIn) =>
+            _assets.ReplaceOne(asset => asset.Id == id, assetIn);
 
-        public void Remove(Book bookIn) =>
-            _books.DeleteOne(book => book.Id == bookIn.Id);
+        public void Remove(Asset assetIn) =>
+            _assets.DeleteOne(asset => asset.Id == assetIn.Id);
 
         public void Remove(string id) =>
-            _books.DeleteOne(book => book.Id == id);
+            _assets.DeleteOne(asset => asset.Id == id);
     }
 }
