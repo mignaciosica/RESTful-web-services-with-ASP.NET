@@ -12,8 +12,11 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BooksApi
 {
@@ -37,7 +40,17 @@ namespace BooksApi
             {
                 options.Authority = $"https://{Configuration["Auth0:Domain"]}/";
                 options.Audience = Configuration["Auth0:Audience"];
+                // options.TokenValidationParameters = new TokenValidationParameters
+                // {
+                //     NameClaimType = ClaimTypes.NameIdentifier
+                // };
             });
+            
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("signup:user", policy => policy.Requirements.Add(new HasScopeRequirement("signup:user", "https://dev-unplug.us.auth0.com/")));
+            });
+            
             services.AddControllers();
 
             // requires using Microsoft.Extensions.Options
@@ -49,6 +62,8 @@ namespace BooksApi
 
             services.AddSingleton<BookService>();
             services.AddSingleton<UserService>();
+            
+            services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
 
             services.AddControllers()
                 .AddNewtonsoftJson(options => options.UseMemberCasing());

@@ -8,6 +8,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Net.Http.Headers;
 using MongoDB.Bson;
+using Newtonsoft.Json.Linq;
 
 namespace BooksApi.Controllers
 {
@@ -43,17 +44,37 @@ namespace BooksApi.Controllers
                 return NotFound();
             }
 
-            if (user.Auth0Id == sub) {
+            if (user.UserData.Auth0Id == sub) {
                 return user;
             }
 
             return Unauthorized();
         }
+        
+        [HttpGet("{id:length(24)}/locations", Name = "GetLocations")]
+        public ActionResult<List<string>> GetLocations(string id)
+        {
+            var user = _userService.Get(id);
 
+            if (user == null) {
+                return NotFound();
+            }
+            
+            return user.UserData.Locations;
+        }
+        
         [HttpPost]
+        [Authorize("signup:user")]
         public ActionResult<User> Create(User user)
         {
-            User userCreated = _userService.Create(user);
+            // var body = Request.Body;
+            // var json = JObject.Parse(body.ToString());
+            // var newUser = new User();
+            // newUser.UserData = json["username"].ToString();
+            
+            var userCreated = _userService.Create(user);
+            Console.WriteLine(userCreated.Id);
+            Console.WriteLine(userCreated.UserData.Locations);
 
             return CreatedAtRoute("GetUser", new { id = userCreated.Id.ToString() }, user);
         }

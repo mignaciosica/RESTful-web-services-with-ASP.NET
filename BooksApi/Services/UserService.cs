@@ -32,12 +32,12 @@ namespace BooksApi.Services
         }
 
         public void Update(string id, User userIn) =>
-            _users.ReplaceOne(users => users.Id == id, userIn);
+            _users.ReplaceOne(users => users.Id  == id, userIn);
 
         public void Remove(User userIn) =>
-            _users.DeleteOne(user => user.Id == userIn.Id);
+            _users.DeleteOne(user => user.Id  == userIn.Id );
 
         public void Remove(string id) =>
-            _users.DeleteOne(user => user.Id == id);
+            _users.DeleteOne(user => user.Id  == id);
     }
 }
