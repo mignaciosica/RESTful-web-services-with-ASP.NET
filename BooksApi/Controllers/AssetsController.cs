@@ -21,7 +21,7 @@ namespace BooksApi.Controllers
         public ActionResult<List<Asset>> Get() =>
             _assetService.Get();
 
-        [HttpGet("{id:length(24)}", Name = "GetAsset")]
+        [HttpGet("{id:length(24)}/", Name = "GetAsset")]
         public ActionResult<Asset> Get(string id)
         {
             var asset = _assetService.Get(id);
