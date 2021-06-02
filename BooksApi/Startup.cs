@@ -42,10 +42,6 @@ namespace BooksApi
             {
                 options.Authority = $"https://{Configuration["Auth0:Domain"]}/";
                 options.Audience = Configuration["Auth0:Audience"];
-                // options.TokenValidationParameters = new TokenValidationParameters
-                // {
-                //     NameClaimType = ClaimTypes.NameIdentifier
-                // };
             });
             
             services.AddAuthorization(options =>
